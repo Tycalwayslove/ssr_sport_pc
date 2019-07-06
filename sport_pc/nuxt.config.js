@@ -1,4 +1,4 @@
-const colors = require('vuetify/es5/util/colors').default
+const colors = require ('vuetify/es5/util/colors').default;
 
 module.exports = {
   mode: 'universal',
@@ -9,31 +9,43 @@ module.exports = {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      }
-    ]
+        href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: {color: '#fff'},
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@/assets/css/normalize.css', '@/assets/css/base.css'],
+  /*
+   ** Nuxt Style Resources (sass,less,stylus )
+   ** github: https://github.com/nuxt-community/style-resources-module
+   */
+  styleResources: {
+    // your settings here
+    scss: [
+      '@/assets/css/variable.scss',
+      // '@/assets/css/utils.scss',
+      // use underscore "_" & also file extension ".scss"
+    ],
+  },
+
   /*
    ** Plugins to load before mounting the App
    */
@@ -45,6 +57,7 @@ module.exports = {
     '@nuxtjs/vuetify',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources' // with styleResources
     // '@nuxtjs/eslint-module'
   ],
   /*
@@ -64,8 +77,8 @@ module.exports = {
       info: colors.teal.lighten1,
       warning: colors.amber.base,
       error: colors.deepOrange.accent4,
-      success: colors.green.accent3
-    }
+      success: colors.green.accent3,
+    },
   },
   /*
    ** Build configuration
@@ -74,6 +87,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
-  }
-}
+    extend (config, ctx) {},
+  },
+};

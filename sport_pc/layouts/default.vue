@@ -94,5 +94,6 @@ export default {
 <style lang="scss" scoped>
 .acontainer{
   height:100%;
+  padding:0px;
 }
 </style>
