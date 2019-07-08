@@ -57,14 +57,18 @@ module.exports = {
     '@nuxtjs/vuetify',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources' // with styleResources
+    '@nuxtjs/style-resources', // with styleResources
     // '@nuxtjs/eslint-module'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.NODE_ENV == 'production'
+      ? 'http://120.78.74.49:8080'
+      : 'http://localhost:8080',
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -78,6 +82,15 @@ module.exports = {
       warning: colors.amber.base,
       error: colors.deepOrange.accent4,
       success: colors.green.accent3,
+    },
+  },
+  proxy: {
+    '/api': {
+      target: 'http://120.78.74.49:8080/api',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '',
+      },
     },
   },
   /*
