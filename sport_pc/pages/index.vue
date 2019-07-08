@@ -111,14 +111,8 @@
       <!-- 下面展示的列表 -->
       <div class="list-box">
         <div class="days-list">
-          <p class="date">
-07-04 星期四
-          </p>
-
+         <sport-list></sport-list>
         </div>
-
-
-    
       </div>
     </div>
   </div>
@@ -126,8 +120,9 @@
 <script>
 import moment from 'moment'
 import format from 'date-fns/format'
+import sportList from '@/components/sport-list'
 export default {
-  components: {},
+  components: {sportList},
   data() {
     return {
       items1: [

@@ -1,39 +1,34 @@
 <template>
   <div class="sport-list">
     <div class="sport-list-el">
-      <ul v-for="(key, value, index) in list" :key="index" class="game-list">
+      <ul class="game-list">
         <li class="group-info">{{ value | DateFormat }}</li>
-        <li
-          v-for="sportItem in key"
-          :Key="sportItem.playId"
-          class="game-item px-bottom"
-        >
-          <a class="detail-url" :href="sportItem.liveAddress1">
-            <div class="game-desc">英超第三轮</div>
-            <div class="game-info">
-              <div class="left team-box">
-                <img
-                  src="http://mat1.gtimg.com/sports/logo/yingchao/afd.png"
-                  alt
-                />
-                <h3>{{ sportItem.teamAName }}</h3>
+        <li class="game-item px-bottom">
+          <a class="detail-url">
+            <div class="game-time">03：00</div>
+            <div class="game-detial">
+              <div class="a-name">
+                <span>挪威</span>
+                <img src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
+                     alt="">
               </div>
-              <div class="right team-box">
-                <img
-                  src="http://mat1.gtimg.com/sports/logo/yingchao/afd.png"
-                  alt
-                />
-                <h3>{{ sportItem.teamBName }}</h3>
-              </div>
-              <div class="game-status">
-                <div class="goals">
-                  {{ sportItem.teamAPoint }}:{{ sportItem.teamBPoint }}
-                </div>
-                <div class="game-icon end">
-                  <i></i>
-                  集锦
+              <div class="a-goal">0</div>
+              <div class="game-name">
+                <div class="status-content">
+                  <span>女足世界杯1/4决赛</span>
+                  <span>已结束</span>
                 </div>
               </div>
+
+              <div class="b-goal">4</div>
+              <div class="b-name">
+                <span>挪威</span>
+                <img src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
+                     alt="">
+              </div>
+            </div>
+            <div class="game-post">
+              <v-button>集锦</v-button>
             </div>
           </a>
         </li>
@@ -43,16 +38,14 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-// import sportListItem from './sport-list-item'
 
 export default {
   name: 'SportList',
-  // sportListItem
   components: {},
   filters: {
     DateFormat(value) {
-      const arr = value.split('-')
-      return `${arr[0]}年${arr[1]}月${arr[2]}日`
+      // const arr = value.split('-')
+      // return `${arr[0]}年${arr[1]}月${arr[2]}日`
     }
   },
   props: {
@@ -69,91 +62,49 @@ export default {
     }
   },
   computed: mapGetters({
-    sportList: 'sport/getSportList', // 赛事列表
-    sportListParams: 'sport/getSportListParams'
+    // sportList: 'sport/getSportList', // 赛事列表
+    // sportListParams: 'sport/getSportListParams'
   })
 }
 </script>
 
 <style lang="scss" scoped>
-.game-list .group-info {
-  height: rem(25);
-  padding-left: rem(10);
-  font-size: rem(12);
-  line-height: rem(25);
-  color: #666;
-  background-color: #ebf0f5;
-}
-.game-list .game-item {
-  height: rem(128);
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-  & a {
-    display: block;
+.game-item {
+  position: relative;
+  margin: 0 40px;
+  height: 70px;
+  line-height: 70px;
+  .detail-url {
     width: 100%;
-    height: rem(127);
-    text-decoration: none;
-  }
-  .game-desc {
-    padding: rem(9) 0 rem(4);
-    text-align: center;
-    line-height: rem(17);
-    font-size: rem(14);
-    color: #9e9e9e;
-  }
-  .game-info {
-    width: 100%;
-    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    .game-time {
+      flex-basis: 130px;
+      flex-shrink: 1;
+      flex-grow: 0;
+    }
+    .game-detial {
+      flex: 1;
+      display: inline-block;
 
-    height: rem(97);
-    .team-box {
-      width: 33%;
-      font-size: rem(15);
-      color: #333;
-      h3 {
-        width: 100%;
-        line-height: rem(22);
-        font-size: rem(16);
-        color: #373a41;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      & div {
-        text-align: center;
-        height: rem(97);
-      }
-      & img {
-        margin-bottom: rem(10);
-        width: rem(44);
-        height: rem(44);
+      .a-name {
+        & span {
+          vertical-align: middle;
+          display: inline-block;
+          max-width: 110px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          text-align: right;
+        }
+        & img {
+          height: 36px;
+        }
       }
     }
-    .game-status {
-      overflow: hidden;
-      color: #373a41;
-      .goals {
-        margin-top: rem(7);
-        margin-bottom: rem(11);
-        line-height: rem(33);
-        font-size: rem(24);
-      }
-      .game-icon {
-        width: rem(110);
-        height: rem(30);
-        margin: 0 auto;
-        border-radius: rem(15);
-        border: #ebedf0 solid 1px;
-        line-height: rem(30);
-        font-size: rem(14);
-        color: #fff;
-        text-align: center;
-      }
-      .end {
-        box-shadow: 0 rem(2) rem(4) 0 rgba(40, 98, 255, 0.3);
-        border-color: transparent;
-        background-color: #2962ff;
-      }
+    .game-post {
+      flex: 0 1 130px;
     }
   }
 }
