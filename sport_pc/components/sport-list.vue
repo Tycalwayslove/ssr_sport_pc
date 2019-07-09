@@ -15,16 +15,16 @@
               <div class="a-goal">0</div>
               <div class="game-name">
                 <div class="status-content">
-                  <span>女足世界杯1/4决赛</span>
-                  <span>已结束</span>
+                  <p>女足世界杯1/4决赛</p>
+                  <p>已结束</p>
                 </div>
               </div>
 
               <div class="b-goal">4</div>
               <div class="b-name">
-                <span>挪威</span>
                 <img src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
                      alt="">
+                <span>挪威</span>
               </div>
             </div>
             <div class="game-post">
@@ -73,12 +73,13 @@ export default {
   position: relative;
   margin: 0 40px;
   height: 70px;
-  line-height: 70px;
+  // line-height: 70px;
   .detail-url {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .game-time {
       flex-basis: 130px;
       flex-shrink: 1;
@@ -86,9 +87,16 @@ export default {
     }
     .game-detial {
       flex: 1;
-      display: inline-block;
+      display: flex;
+      height: 100%;
+      align-items: center;
 
-      .a-name {
+      .a-name,
+      .b-name {
+        width: 120px;
+        display: flex;
+        
+        align-items: center;
         & span {
           vertical-align: middle;
           display: inline-block;
@@ -97,10 +105,33 @@ export default {
           overflow: hidden;
           white-space: nowrap;
           text-align: right;
+          margin-right:15px;
         }
         & img {
           height: 36px;
         }
+      }
+      .a-goal {
+        width: 30px;
+        text-align: center;
+      }
+      .game-name {
+        width: 120px;
+        text-align:center;
+      }
+      .b-goal {
+        width: 30px;
+        text-align: center;
+      }
+      .a-name{
+        justify-content: flex-end;
+      }
+      .b-name {
+        justify-content: flex-start;
+        & img{
+          margin-right:15px;
+        }
+     
       }
     }
     .game-post {
