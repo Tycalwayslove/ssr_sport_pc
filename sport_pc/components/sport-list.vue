@@ -2,7 +2,7 @@
   <div class="sport-list">
     <div class="sport-list-el">
       <ul class="game-list">
-        <li class="group-info">{{ value | DateFormat }}</li>
+        <!-- <li class="group-info">2019333</li> -->
         <li class="game-item px-bottom">
           <a class="detail-url">
             <div class="game-time">03：00</div>
@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="game-post">
-              <v-button>集锦</v-button>
+              <v-btn color="success">集锦</v-btn>
             </div>
           </a>
         </li>

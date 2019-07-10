@@ -70,43 +70,7 @@
     <div class="setion">
       <!-- 上面的筛选 -->
       <div class="cal-wrapper">
-        <v-layout align-space-around>
-          <v-flex xs12
-                  lg6>
-            <v-menu v-model="menu1"
-                    :close-on-content-click="false"
-                    full-width
-                    max-width="290">
-              <template v-slot:activator="{ on }">
-                <v-text-field :value="computedDateFormattedMomentjs"
-                              clearable
-                              label="Formatted with Moment.js"
-                              readonly
-                              v-on="on"></v-text-field>
-              </template>
-              <v-date-picker v-model="date"
-                             @change="menu1 = false"></v-date-picker>
-            </v-menu>
-          </v-flex>
-          <v-flex xs12
-                  lg6>
-            <v-menu v-model="menu2"
-                    :close-on-content-click="false"
-                    full-width
-                    max-width="290">
-              <template v-slot:activator="{ on }">
-                <v-text-field :value="computedDateFormattedDatefns"
-                              clearable
-                              label="Formatted with datefns"
-                              readonly
-                              v-on="on"></v-text-field>
-              </template>
-              <v-date-picker v-model="date"
-                             @change="menu2 = false"></v-date-picker>
-            </v-menu>
-          </v-flex>
-        </v-layout>
-
+      <date-select></date-select>
       </div>
       <!-- 下面展示的列表 -->
       <div class="list-box">
@@ -121,8 +85,9 @@
 import moment from 'moment'
 import format from 'date-fns/format'
 import sportList from '@/components/sport-list'
+import dateSelect from '@/components/date-select'
 export default {
-  components: {sportList},
+  components: {sportList,dateSelect},
   data() {
     return {
       items1: [
@@ -280,6 +245,7 @@ export default {
     width: 1025px;
     height: 100%;
     margin-left: 30px;
+    background:#fff;
     .date-select {
       height: 100px;
     }
