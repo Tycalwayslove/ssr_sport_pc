@@ -1,8 +1,8 @@
 import { getNowDate } from '@/utils/utils'
 export default () => ({
   // 基础常量
-  // pageNum: 1, // 第几页
-  // pageSize: 10, // 一页显示
+  pageNum: 1, // 第几页
+  pageSize: 10, // 一页显示
   // 数据源
   tabList: [], // tab列表
   sportList: [], // 比赛列表

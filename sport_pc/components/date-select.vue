@@ -1,27 +1,47 @@
 <template>
-  <ul class='date-box'>
-    <li
-      :class="[isActive ? 'active' : '', 'date-item']"
-      v-for="(item,index) in week"
-      :key='index'
-    >{{item}}</li>
-  </ul>
+  <div class="date-list">
+    <div class="left-btn" @click="handleBeforeDate">
+      -
+    </div>
+    <ul class='date-box'>
+      <li @click='handelSelctItem(index,item)'
+        :class="[select ===index ? 'active' : '', 'date-item']"
+        v-for="(item,index) in week"
+        :key='index'
+      >
+        <p>
+          <span>{{item | dateFormat}}</span></br>
+          <span>{{item | daysweek }}</span>
+
+        </p>
+      </li>
+    </ul>
+    <div class="right-btn" @click="handleAfterDate">+</div>
+  </div>
+
 </template>
 <script>
 import moment from 'moment'
+import { mapGetters ,mapMutations} from 'vuex'
 export default {
   name: 'dateSelect',
   data() {
     return {
       now: moment(),
-      isActive: false
+      select: 3
     }
   },
   computed: {
+
+    ...mapGetters({
+      playDate:'sport/getPlayDate', //获取当前日期
+      getSportListParams:'sport/getSportListParams', // 获取调用接口所需要的参数
+    }),
     // 通过获取当前日期的值，从而设置该周的值
-    week(now) {
+    week() {
+      // console.log(this.playDate)
       const weeks = []
-      const firstDay = moment(now)
+      const firstDay = moment(this.playDate)
         .subtract(3, 'days')
         .format('YYYY-MM-DD')
       for (let i = 0; i < 7; i++) {
@@ -31,34 +51,112 @@ export default {
             .format('YYYY-MM-DD')
         )
       }
-      console.log(weeks)
       return weeks
     }
   },
+  filters: {
+    // 通过获取当前日期的值，从而设置该周星期数
+    daysweek(date) {
+      const now = moment(date).format('d')
+      // console.log(typeof now)
+      switch (now) {
+        case "0":
+          return '星期日'
+          break;
+        case "1":
+          return '星期一'
+          break;
+        case "2":
+          return '星期二'
+          break;
+        case "3":
+          return '星期三'
+          break;
+        case "4":
+          return '星期四'
+          break;
+        case "5":
+          return '星期五'
+          break;
+        case "6":
+          return '星期六'
+          break;
+        default:
+          return '日期不明'
+          break;
+      }
+    },
+    dateFormat(date){
+      const idx = date.indexOf('-')
+      const dates = date.substring(idx+1)
+      return dates
+    }
+  },
   mounted() {},
-  methods: {}
+  methods: {
+    ...mapMutations({
+      pushDate:'sport/pushDate'
+    }),
+    // 之前的日期
+    handleBeforeDate(){
+      console.log(this.playDate)
+      const before = moment(this.playDate).subtract(6,'days').format("YYYY-MM-DD")
+      console.log(before)
+      this.pushDate(before) //将上一周的日期填充到store中
+      this.select = 0;
+
+    },
+    // 之后的日期
+    handleAfterDate(){
+      const after =moment(this.playDate).add(7,'days').format("YYYY-MM-DD")
+      console.log(after)
+      this.pushDate(after) //将下一周的日期填充到store中
+      this.pushDate(after) //将下一周的日期填充到store中
+      this.select = 6;
+    },
+    // 选择日期事件
+    handelSelctItem(index,item){
+      this.select = index;
+      console.log(item)
+      this.pushDate(item)
+      console.log(this.getSportListParams)
+
+
+    }
+
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.date-box {
+.date-list {
+  width: 100%;
+  position: relative;
   display: flex;
-  .date-item {
-    width: 14.28%;
-    height: 100%;
-    font-size: 16px;
-    color: #8e8e8e;
-    letter-spacing: 0;
-    text-align: center;
-    padding-top: 10px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    cursor: pointer;
+  .left-btn,
+  .right-btn {
+    flex: 0 1 60px;
   }
-  .active {
-    color: $base-color;
-    border-radius: 2px;
-    background-color: red;
+  .date-box {
+    flex: 1;
+    display: flex;
+    .date-item {
+      width: 14.28%;
+      height: 60px;
+      font-size: 14px;
+      color: #8e8e8e;
+      letter-spacing: 0;
+      text-align: center;
+      padding-top: 10px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+    .active {
+      color: $base-color;
+      border-radius: 2px;
+      background-color: red;
+    }
   }
 }
 </style>

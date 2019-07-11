@@ -15,6 +15,10 @@ export default {
   getCount(state) {
     return state.Count
   },
+  // 获取当前日期
+  getPlayDate(state) {
+    return state.playDate
+  },
   // 获取请求列表的参数
   getSportListParams(state) {
     const {
