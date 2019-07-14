@@ -1,18 +1,28 @@
 <template>
   <div class="sport-list">
     <div class="sport-list-el">
-      <ul class="game-list">
+      <ul
+        class="game-list"
+        v-for="(key, value, index) in list"
+        :key="index"
+      >
         <!-- <li class="group-info">2019333</li> -->
-        <li class="game-item px-bottom">
+        <li
+          class="game-item px-bottom"
+          v-for="sportItem in key"
+          :Key="sportItem.playId"
+        >
           <a class="detail-url">
-            <div class="game-time">03：00</div>
+            <div class="game-time">{{sportItem.playTimeStart | formatDate}}</div>
             <div class="game-detial">
               <div class="a-name">
-                <span>挪威</span>
-                <img src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
-                     alt="">
+                <span>{{ sportItem.teamAName }}</span>
+                <img
+                  src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
+                  alt=""
+                >
               </div>
-              <div class="a-goal">0</div>
+              <div class="a-goal">{{ sportItem.teamAPoint }}</div>
               <div class="game-name">
                 <div class="status-content">
                   <p>女足世界杯1/4决赛</p>
@@ -20,11 +30,13 @@
                 </div>
               </div>
 
-              <div class="b-goal">4</div>
+              <div class="b-goal">{{ sportItem.teamBPoint }}</div>
               <div class="b-name">
-                <img src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
-                     alt="">
-                <span>挪威</span>
+                <img
+                  src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
+                  alt=""
+                >
+                <span>{{ sportItem.teamBName }}</span>
               </div>
             </div>
             <div class="game-post">
@@ -38,16 +50,11 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: 'SportList',
   components: {},
-  filters: {
-    DateFormat(value) {
-      // const arr = value.split('-')
-      // return `${arr[0]}年${arr[1]}月${arr[2]}日`
-    }
-  },
   props: {
     list: {
       type: Object,
@@ -61,10 +68,12 @@ export default {
       data: null
     }
   },
-  computed: mapGetters({
-    // sportList: 'sport/getSportList', // 赛事列表
-    // sportListParams: 'sport/getSportListParams'
-  })
+  filters: {
+    formatDate(value) {
+      const formatDates = moment(value).format('HH:mm')
+      return formatDates
+    }
+  }
 }
 </script>
 
@@ -95,7 +104,7 @@ export default {
       .b-name {
         width: 120px;
         display: flex;
-        
+
         align-items: center;
         & span {
           vertical-align: middle;
@@ -105,7 +114,7 @@ export default {
           overflow: hidden;
           white-space: nowrap;
           text-align: right;
-          margin-right:15px;
+          margin-right: 15px;
         }
         & img {
           height: 36px;
@@ -117,21 +126,20 @@ export default {
       }
       .game-name {
         width: 120px;
-        text-align:center;
+        text-align: center;
       }
       .b-goal {
         width: 30px;
         text-align: center;
       }
-      .a-name{
+      .a-name {
         justify-content: flex-end;
       }
       .b-name {
         justify-content: flex-start;
-        & img{
-          margin-right:15px;
+        & img {
+          margin-right: 15px;
         }
-     
       }
     }
     .game-post {

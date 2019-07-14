@@ -117,9 +117,7 @@ export default {
     // 选择日期事件
     handelSelctItem(index,item){
       this.select = index;
-      console.log(item)
-      this.pushDate(item)
-      console.log(this.getSportListParams)
+      this.$emit('onDateChange',item)
 
 
     }

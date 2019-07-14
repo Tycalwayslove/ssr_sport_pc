@@ -2,6 +2,10 @@ const colors = require ('vuetify/es5/util/colors').default;
 
 module.exports = {
   mode: 'universal',
+  server: {
+    host: 'localhost',
+    port: 8080,
+  },
   /*
    ** Headers of the page
    */
@@ -57,6 +61,7 @@ module.exports = {
     '@nuxtjs/vuetify',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/style-resources', // with styleResources
     // '@nuxtjs/eslint-module'
   ],

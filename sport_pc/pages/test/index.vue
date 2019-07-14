@@ -1,3 +1,3 @@
 <template>
-  <div>午是一直s</div>
+  <nuxt-link to="/">首页</nuxt-link>
 </template>
