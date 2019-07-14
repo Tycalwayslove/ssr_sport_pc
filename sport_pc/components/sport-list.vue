@@ -108,7 +108,7 @@ export default {
           break
       }
       const formatDate = moment(value).format('YYYY-MM-DD')
-      const days = formatDate + weeksNumber
+      const days = formatDate + " " +weeksNumber
       return days
     }
   },
