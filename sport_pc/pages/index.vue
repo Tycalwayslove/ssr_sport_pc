@@ -81,6 +81,8 @@
         <date-select
           :list="sportList"
           @onDateChange="handleDateChange"
+          @onAfterDate="handleAfterDate"
+          @onBeforeDate="handleBeforeDate"
         ></date-select>
       </div>
       <!-- 下面展示的列表 -->
@@ -88,7 +90,6 @@
         <div class="days-list">
           <sport-list
             :list='sportList'
-            v-if="Count>0"
           ></sport-list>
         </div>
       </div>
@@ -261,7 +262,7 @@ export default {
       pushSportList: 'sport/pushSportList', //填充数据
       changeCount: 'sport/changeCount', // 改变接口放回的数量
       changePageNum: 'sport/changePageNum',
-      changePlayDate: 'sport/changePlayDate',
+      changePlayDate: 'sport/changePlayDate'
     }),
     handleTagClick(index) {
       console.log(index)
@@ -269,7 +270,20 @@ export default {
     //日期改变
     handleDateChange(date) {
       console.log(date)
-      this.requestData(2)
+      this.changePlayDate(date)
+      this.requestData(0)
+    },
+    //下一个日期
+    handleAfterDate(date) {
+      console.log(date)
+      this.changePlayDate(date)
+      this.requestData(0)
+    },
+    //上一个日期
+    handleBeforeDate(date) {
+      console.log(date)
+      this.changePlayDate(date)
+      this.requestData(0)
     },
     // 格式化返回的数据对象
     parseData(data) {
@@ -305,33 +319,34 @@ export default {
           const data = this.parseData(result.Data)
           console.log(data)
           this.changeCount(data.Count)
-          if (result.Data.Count === 10) {
-            this.changePageNum('1')
-          } else {
-            this.changePageNum('2')
-          }
-          if (num === 1) {
-            if (this.SportList.length === 0) {
-              this.pushSportList(data)
-            } else {
-              let list = { ...this.SportList }
-              console.log(list)
-              for (const item in data) {
-                if (list.hasOwnProperty(item)) {
-                  list[item].push(data[item])
-                } else {
-                  this.$set(this.list, item, data[item])
-                  list = Object.assign(list, data)
-                }
-              }
-              console.log(list)
-              this.pushSportList(list)
-            }
-          } else if (num === 2) {
-            console.log(data)
-            this.pushSportList(data)
-          }
-          this.changePlayDate(moment(result.Data.Date).format('YYYY-MM-DD'))
+          this.pushSportList(data)
+          // if (result.Data.Count === 10) {
+          //   this.changePageNum('1')
+          // } else {
+          //   this.changePageNum('2')
+          // }
+          // if (num === 1) {
+          //   if (this.SportList.length === 0) {
+          //     this.pushSportList(data)
+          //   } else {
+          //     let list = { ...this.SportList }
+          //     console.log(list)
+          //     for (const item in data) {
+          //       if (list.hasOwnProperty(item)) {
+          //         list[item].push(data[item])
+          //       } else {
+          //         this.$set(this.list, item, data[item])
+          //         list = Object.assign(list, data)
+          //       }
+          //     }
+          //     console.log(list)
+          //     this.pushSportList(list)
+          //   }
+          // } else if (num === 2) {
+          //   console.log(data)
+          //   this.pushSportList(data)
+          // }
+          // this.changePlayDate(moment(result.Data.Date).format('YYYY-MM-DD'))
         })
     }
   }

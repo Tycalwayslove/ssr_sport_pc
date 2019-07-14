@@ -6,13 +6,16 @@
         v-for="(key, value, index) in list"
         :key="index"
       >
-        <!-- <li class="group-info">2019333</li> -->
+        <li class="group-info"><span></span>{{PlayDate | formatDateWeek}}</li>
         <li
           class="game-item px-bottom"
           v-for="sportItem in key"
           :Key="sportItem.playId"
         >
-          <a class="detail-url">
+          <a
+            class="detail-url"
+            :href="sportItem.liveAddress1"
+          >
             <div class="game-time">{{sportItem.playTimeStart | formatDate}}</div>
             <div class="game-detial">
               <div class="a-name">
@@ -26,7 +29,7 @@
               <div class="game-name">
                 <div class="status-content">
                   <p>女足世界杯1/4决赛</p>
-                  <p>已结束</p>
+                  <p>{{sportItem.competitionStatus}}</p>
                 </div>
               </div>
 
@@ -72,12 +75,55 @@ export default {
     formatDate(value) {
       const formatDates = moment(value).format('HH:mm')
       return formatDates
+    },
+    formatDateWeek(value) {
+      const weeks = moment(value).weekday()
+      console.log(weeks)
+      let weeksNumber ;
+      switch (weeks) {
+        case 0:
+          weeksNumber = '星期天'
+          break
+        case 1:
+          weeksNumber = '星期一'
+          break
+        case 2:
+          weeksNumber = '星期二'
+          break
+        case 3:
+          weeksNumber = '星期三'
+          break
+        case 4:
+          weeksNumber = '星期四'
+          break
+        case 5:
+          weeksNumber = '星期五'
+          break
+        case 6:
+          weeksNumber = '星期六'
+          break
+
+        default:
+          weeksNumber = '默认日期'
+          break
+      }
+      const formatDate = moment(value).format('YYYY-MM-DD')
+      const days = formatDate + weeksNumber
+      return days
     }
+  },
+  computed: {
+    ...mapGetters({
+      PlayDate: 'sport/getPlayDate' // 获取vuex中存储的当前时间
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.sport-list {
+  margin-top: 15px;
+}
 .game-item {
   position: relative;
   margin: 0 40px;
@@ -90,7 +136,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     .game-time {
-      flex-basis: 130px;
+      flex-basis: 60px;
       flex-shrink: 1;
       flex-grow: 0;
     }
@@ -102,7 +148,7 @@ export default {
 
       .a-name,
       .b-name {
-        width: 120px;
+        width: 25%;
         display: flex;
 
         align-items: center;
@@ -121,15 +167,15 @@ export default {
         }
       }
       .a-goal {
-        width: 30px;
+        width: 8%;
         text-align: center;
       }
       .game-name {
-        width: 120px;
+        width: 34%;
         text-align: center;
       }
       .b-goal {
-        width: 30px;
+        width: 8%;
         text-align: center;
       }
       .a-name {
@@ -145,6 +191,33 @@ export default {
     .game-post {
       flex: 0 1 130px;
     }
+  }
+}
+.px-bottom {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0;
+    border: solid;
+    border-width: thin 0 0 0;
+    border-color: rgba(0, 0, 0, 0.12);
+    bottom: 0;
+  }
+}
+.group-info {
+  padding-left: 24px;
+  color: #8e8e8e;
+  font-size: 16px;
+  & span {
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    margin-right: 10px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: $base-color;
   }
 }
 </style>

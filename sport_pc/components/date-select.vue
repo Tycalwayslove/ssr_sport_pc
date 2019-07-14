@@ -1,7 +1,7 @@
 <template>
   <div class="date-list">
     <div class="left-btn" @click="handleBeforeDate">
-      -
+      上页
     </div>
     <ul class='date-box'>
       <li @click='handelSelctItem(index,item)'
@@ -16,7 +16,7 @@
         </p>
       </li>
     </ul>
-    <div class="right-btn" @click="handleAfterDate">+</div>
+    <div class="right-btn" @click="handleAfterDate">下页</div>
   </div>
 
 </template>
@@ -41,7 +41,7 @@ export default {
     week() {
       // console.log(this.playDate)
       const weeks = []
-      const firstDay = moment(this.playDate)
+      const firstDay = moment(this.now)
         .subtract(3, 'days')
         .format('YYYY-MM-DD')
       for (let i = 0; i < 7; i++) {
@@ -100,19 +100,21 @@ export default {
     // 之前的日期
     handleBeforeDate(){
       console.log(this.playDate)
-      const before = moment(this.playDate).subtract(6,'days').format("YYYY-MM-DD")
+      const before = moment(this.now).subtract(7,'days').format("YYYY-MM-DD")
+      this.now = before
       console.log(before)
-      this.pushDate(before) //将上一周的日期填充到store中
-      this.select = 0;
+      this.select = 3;
+      this.$emit('onBeforeDate',before)
 
     },
     // 之后的日期
     handleAfterDate(){
-      const after =moment(this.playDate).add(7,'days').format("YYYY-MM-DD")
+      const after =moment(this.now).add(7,'days').format("YYYY-MM-DD")
+      this.now = after
       console.log(after)
-      this.pushDate(after) //将下一周的日期填充到store中
-      this.pushDate(after) //将下一周的日期填充到store中
-      this.select = 6;
+      this.select = 3;
+      this.$emit('onAfterDate',after)
+
     },
     // 选择日期事件
     handelSelctItem(index,item){
@@ -131,6 +133,7 @@ export default {
   width: 100%;
   position: relative;
   display: flex;
+  margin-top:15px; 
   .left-btn,
   .right-btn {
     flex: 0 1 60px;
@@ -155,6 +158,12 @@ export default {
       border-radius: 2px;
       background-color: red;
     }
+  }
+  .left-btn,.right-btn{
+    margin:0 auto;
+    text-align:center;
+    line-height:60px;
+    
   }
 }
 </style>
