@@ -1,3 +1,3 @@
 <template>
-  <nuxt-link to="/">首页</nuxt-link>
+  <nuxt-link to="/">hello</nuxt-link>
 </template>
