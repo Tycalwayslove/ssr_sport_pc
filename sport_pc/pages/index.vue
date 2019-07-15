@@ -90,7 +90,12 @@
         <div class="days-list">
           <sport-list
             :list='sportList'
+            v-if='sportList'
           ></sport-list>
+          <div class="nodata" v-else>
+            <i class="iconfont icon-msg- font128"></i>
+            <p>今日暂无数据</p>
+          </div>
         </div>
       </div>
     </div>
@@ -402,6 +407,15 @@ export default {
     .date-select {
       height: 100px;
     }
+  }
+
+  .nodata{
+    margin-top:60px;
+    font-size:18px;
+    text-align:center;
+  }
+  .font128{
+    font-size:128px;
   }
 }
 </style>

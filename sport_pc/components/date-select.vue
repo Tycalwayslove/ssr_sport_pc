@@ -1,7 +1,7 @@
 <template>
   <div class="date-list">
     <div class="left-btn" @click="handleBeforeDate">
-      上页
+      <i class='iconfont icon-before'></i>
     </div>
     <ul class='date-box'>
       <li @click='handelSelctItem(index,item)'
@@ -16,7 +16,9 @@
         </p>
       </li>
     </ul>
-    <div class="right-btn" @click="handleAfterDate">下页</div>
+    <div class="right-btn" @click="handleAfterDate">
+      <i class='iconfont icon-after'></i>
+    </div>
   </div>
 
 </template>

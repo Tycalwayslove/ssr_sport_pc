@@ -36,7 +36,7 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['@/assets/css/normalize.css', '@/assets/css/base.css'],
+  css: ['@/assets/css/index.scss'],
   /*
    ** Nuxt Style Resources (sass,less,stylus )
    ** github: https://github.com/nuxt-community/style-resources-module
