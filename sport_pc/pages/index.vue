@@ -155,28 +155,7 @@ export default {
           avatar: 'https://mat1.gtimg.com/sports/sportapp/liansai_logo/NBA.png'
         }
       ],
-      items3: [
-        {
-          id: 0,
-          title: 'NBA',
-          avatar: 'https://mat1.gtimg.com/sports/sportapp/liansai_logo/NBA.png'
-        },
-        {
-          id: 1,
-          title: 'WNBA',
-          avatar: 'https://mat1.gtimg.com/sports/sportapp/liansai_logo/NBA.png'
-        },
-        {
-          id: 2,
-          title: '篮球其他',
-          avatar: 'https://mat1.gtimg.com/sports/sportapp/liansai_logo/NBA.png'
-        },
-        {
-          id: 3,
-          title: '篮球世界',
-          avatar: 'https://mat1.gtimg.com/sports/sportapp/liansai_logo/NBA.png'
-        }
-      ],
+    
       menu1: false,
       menu2: false
     }
@@ -325,33 +304,7 @@ export default {
           console.log(data)
           this.changeCount(data.Count)
           this.pushSportList(data)
-          // if (result.Data.Count === 10) {
-          //   this.changePageNum('1')
-          // } else {
-          //   this.changePageNum('2')
-          // }
-          // if (num === 1) {
-          //   if (this.SportList.length === 0) {
-          //     this.pushSportList(data)
-          //   } else {
-          //     let list = { ...this.SportList }
-          //     console.log(list)
-          //     for (const item in data) {
-          //       if (list.hasOwnProperty(item)) {
-          //         list[item].push(data[item])
-          //       } else {
-          //         this.$set(this.list, item, data[item])
-          //         list = Object.assign(list, data)
-          //       }
-          //     }
-          //     console.log(list)
-          //     this.pushSportList(list)
-          //   }
-          // } else if (num === 2) {
-          //   console.log(data)
-          //   this.pushSportList(data)
-          // }
-          // this.changePlayDate(moment(result.Data.Date).format('YYYY-MM-DD'))
+       
         })
     }
   }
