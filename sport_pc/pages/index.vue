@@ -58,7 +58,7 @@
               <v-list subheader>
                 <v-subheader>其他</v-subheader>
                 <v-list-tile
-                  v-for="(item,index) in items3"
+                  v-for="(item,index) in items2"
                   :key="item.title"
                   @click='handleTagClick(index)'
                 >
