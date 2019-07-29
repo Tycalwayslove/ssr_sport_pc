@@ -1,10 +1,10 @@
-const colors = require ('vuetify/es5/util/colors').default;
+const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
   mode: 'universal',
   server: {
     host: 'localhost',
-    port: 8080,
+    port: 3002
   },
   /*
    ** Headers of the page
@@ -13,26 +13,27 @@ module.exports = {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
-      {charset: 'utf-8'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
-      },
+        content: process.env.npm_package_description || ''
+      }
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons',
-      },
-    ],
+        href:
+          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: {color: '#fff'},
+  loading: { color: '#fff' },
   /*
    ** Global CSS
    */
@@ -44,10 +45,10 @@ module.exports = {
   styleResources: {
     // your settings here
     scss: [
-      '@/assets/css/variable.scss',
+      '@/assets/css/variable.scss'
       // '@/assets/css/utils.scss',
       // use underscore "_" & also file extension ".scss"
-    ],
+    ]
   },
 
   /*
@@ -63,16 +64,17 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     '@nuxtjs/style-resources', // with styleResources
-    // '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV == 'production'
-      ? 'http://120.78.74.49:8080'
-      : 'http://localhost:8080',
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? 'http://120.78.74.49:8080'
+        : 'http://localhost:3002'
   },
   /*
    ** vuetify module configuration
@@ -86,17 +88,17 @@ module.exports = {
       info: colors.teal.lighten1,
       warning: colors.amber.base,
       error: colors.deepOrange.accent4,
-      success: colors.green.accent3,
-    },
+      success: colors.green.accent3
+    }
   },
   proxy: {
     '/api': {
       target: 'http://120.78.74.49:8080/api',
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '',
-      },
-    },
+        '^/api': ''
+      }
+    }
   },
   /*
    ** Build configuration
@@ -105,6 +107,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend (config, ctx) {},
-  },
-};
+    extend(config, ctx) {}
+  }
+}

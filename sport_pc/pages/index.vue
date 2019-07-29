@@ -5,10 +5,7 @@
         <div class="nav-type">
           <!-- 热门 -->
           <div class="item-hot">
-            <a
-              href="#hot"
-              class='nav-item'
-            >
+            <a href="#hot" class="nav-item">
               <span>热门</span>
             </a>
           </div>
@@ -18,12 +15,12 @@
               <v-list subheader>
                 <v-subheader>篮球</v-subheader>
                 <v-list-tile
-                  v-for="(item,index) in items1"
+                  v-for="(item, index) in items1"
                   :key="item.title"
-                  @click='handleTagClick(index)'
+                  @click="handleTagClick(index)"
                 >
                   <v-list-tile-avatar>
-                    <img :src="item.avatar">
+                    <img :src="item.avatar" />
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -38,12 +35,12 @@
               <v-list subheader>
                 <v-subheader>足球</v-subheader>
                 <v-list-tile
-                  v-for="(item,index) in items2"
+                  v-for="(item, index) in items2"
                   :key="item.title"
-                  @click='handleTagClick(index)'
+                  @click="handleTagClick(index)"
                 >
                   <v-list-tile-avatar>
-                    <img :src="item.avatar">
+                    <img :src="item.avatar" />
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -58,12 +55,12 @@
               <v-list subheader>
                 <v-subheader>其他</v-subheader>
                 <v-list-tile
-                  v-for="(item,index) in items2"
+                  v-for="(item, index) in items2"
                   :key="item.title"
-                  @click='handleTagClick(index)'
+                  @click="handleTagClick(index)"
                 >
                   <v-list-tile-avatar>
-                    <img :src="item.avatar">
+                    <img :src="item.avatar" />
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -89,10 +86,13 @@
       <div class="list-box">
         <div class="days-list">
           <sport-list
-            :list='sportList'
-            v-if='sportList'
+            v-if="sportList"
+            :list="sportList"
           ></sport-list>
-          <div class="nodata" v-else>
+          <div
+            class="nodata"
+            v-else
+          >
             <i class="iconfont icon-msg- font128"></i>
             <p>今日暂无数据</p>
           </div>
@@ -104,9 +104,9 @@
 <script>
 import moment from 'moment'
 import format from 'date-fns/format'
+import { mapGetters, mapMutations } from 'vuex'
 import sportList from '@/components/sport-list'
 import dateSelect from '@/components/date-select'
-import { mapGetters, mapMutations } from 'vuex'
 export default {
   components: { sportList, dateSelect },
   data() {
@@ -155,7 +155,7 @@ export default {
           avatar: 'https://mat1.gtimg.com/sports/sportapp/liansai_logo/NBA.png'
         }
       ],
-    
+
       menu1: false,
       menu2: false
     }
@@ -243,7 +243,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      pushSportList: 'sport/pushSportList', //填充数据
+      pushSportList: 'sport/pushSportList', //  填充数据
       changeCount: 'sport/changeCount', // 改变接口放回的数量
       changePageNum: 'sport/changePageNum',
       changePlayDate: 'sport/changePlayDate'
@@ -251,19 +251,19 @@ export default {
     handleTagClick(index) {
       console.log(index)
     },
-    //日期改变
+    //  日期改变
     handleDateChange(date) {
       console.log(date)
       this.changePlayDate(date)
       this.requestData(0)
     },
-    //下一个日期
+    //  下一个日期
     handleAfterDate(date) {
       console.log(date)
       this.changePlayDate(date)
       this.requestData(0)
     },
-    //上一个日期
+    //  上一个日期
     handleBeforeDate(date) {
       console.log(date)
       this.changePlayDate(date)
@@ -304,7 +304,6 @@ export default {
           console.log(data)
           this.changeCount(data.Count)
           this.pushSportList(data)
-       
         })
     }
   }
@@ -362,13 +361,13 @@ export default {
     }
   }
 
-  .nodata{
-    margin-top:60px;
-    font-size:18px;
-    text-align:center;
+  .nodata {
+    margin-top: 60px;
+    font-size: 18px;
+    text-align: center;
   }
-  .font128{
-    font-size:128px;
+  .font128 {
+    font-size: 128px;
   }
 }
 </style>

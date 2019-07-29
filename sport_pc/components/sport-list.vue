@@ -2,34 +2,39 @@
   <div class="sport-list">
     <div class="sport-list-el">
       <ul
-        class="game-list"
         v-for="(key, value, index) in list"
         :key="index"
+        class="game-list"
       >
-        <li class="group-info"><span></span>{{PlayDate | formatDateWeek}}</li>
+        <li class="group-info">
+          <span />
+          {{ PlayDate | formatDateWeek }}
+        </li>
         <li
-          class="game-item px-bottom"
           v-for="sportItem in key"
           :Key="sportItem.playId"
+          class="game-item px-bottom"
         >
           <a
             class="detail-url"
             :href="sportItem.liveAddress1"
           >
-            <div class="game-time">{{sportItem.playTimeStart | formatDate}}</div>
+            <div class="game-time">
+              {{ sportItem.playTimeStart | formatDate }}
+            </div>
             <div class="game-detial">
               <div class="a-name">
                 <span>{{ sportItem.teamAName }}</span>
                 <img
                   src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
-                  alt=""
-                >
+                  alt
+                />
               </div>
               <div class="a-goal">{{ sportItem.teamAPoint }}</div>
               <div class="game-name">
                 <div class="status-content">
                   <p>女足世界杯1/4决赛</p>
-                  <p>{{sportItem.competitionStatus}}</p>
+                  <p>{{ sportItem.competitionStatus }}</p>
                 </div>
               </div>
 
@@ -37,7 +42,7 @@
               <div class="b-name">
                 <img
                   src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
-                  alt=""
+                  alt
                 >
                 <span>{{ sportItem.teamBName }}</span>
               </div>
@@ -66,11 +71,6 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      data: null
-    }
-  },
   filters: {
     formatDate(value) {
       const formatDates = moment(value).format('HH:mm')
@@ -79,7 +79,7 @@ export default {
     formatDateWeek(value) {
       const weeks = moment(value).weekday()
       console.log(weeks)
-      let weeksNumber ;
+      let weeksNumber
       switch (weeks) {
         case 0:
           weeksNumber = '星期天'
@@ -108,10 +108,16 @@ export default {
           break
       }
       const formatDate = moment(value).format('YYYY-MM-DD')
-      const days = formatDate + " " +weeksNumber
+      const days = formatDate + ' ' + weeksNumber
       return days
     }
   },
+  data() {
+    return {
+      data: null
+    }
+  },
+
   computed: {
     ...mapGetters({
       PlayDate: 'sport/getPlayDate' // 获取vuex中存储的当前时间
