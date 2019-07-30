@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-toolbar fixed app>
-      <img src="@/assets/img/logo.png"  style="width:60px;" alt="">
+    <v-toolbar app fixed>
+      <img alt src="@/assets/img/logo.png" style="width:60px;" />
       <v-toolbar-title v-text="title" />
     </v-toolbar>
     <v-content>
@@ -9,8 +9,6 @@
         <nuxt />
       </v-container>
     </v-content>
- 
-
   </v-app>
 </template>
 
@@ -24,8 +22,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.acontainer{
-  height:100%;
-  padding:0px;
+.acontainer {
+  height: 100%;
+  padding: 0px;
 }
 </style>

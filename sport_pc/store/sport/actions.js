@@ -8,10 +8,10 @@ export default {
       .get(
         `/api/GetTabs/GetReMen?fNum=${state.fNum}&sNum=${state.sNum}&tNum=${state.tNum}`
       )
-      .then(res => {
+      .then((res) => {
         commit('pushTabList', res)
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
   },

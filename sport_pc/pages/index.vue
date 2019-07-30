@@ -5,7 +5,7 @@
         <div class="nav-type">
           <!-- 热门 -->
           <div class="item-hot">
-            <a href="#hot" class="nav-item">
+            <a class="nav-item" href="#hot">
               <span>热门</span>
             </a>
           </div>
@@ -15,9 +15,9 @@
               <v-list subheader>
                 <v-subheader>篮球</v-subheader>
                 <v-list-tile
-                  v-for="(item, index) in items1"
                   :key="item.title"
                   @click="handleTagClick(index)"
+                  v-for="(item, index) in items1"
                 >
                   <v-list-tile-avatar>
                     <img :src="item.avatar" />
@@ -35,9 +35,9 @@
               <v-list subheader>
                 <v-subheader>足球</v-subheader>
                 <v-list-tile
-                  v-for="(item, index) in items2"
                   :key="item.title"
                   @click="handleTagClick(index)"
+                  v-for="(item, index) in items2"
                 >
                   <v-list-tile-avatar>
                     <img :src="item.avatar" />
@@ -55,9 +55,9 @@
               <v-list subheader>
                 <v-subheader>其他</v-subheader>
                 <v-list-tile
-                  v-for="(item, index) in items2"
                   :key="item.title"
                   @click="handleTagClick(index)"
+                  v-for="(item, index) in items2"
                 >
                   <v-list-tile-avatar>
                     <img :src="item.avatar" />
@@ -77,22 +77,16 @@
       <div class="cal-wrapper">
         <date-select
           :list="sportList"
-          @onDateChange="handleDateChange"
           @onAfterDate="handleAfterDate"
           @onBeforeDate="handleBeforeDate"
+          @onDateChange="handleDateChange"
         ></date-select>
       </div>
       <!-- 下面展示的列表 -->
       <div class="list-box">
         <div class="days-list">
-          <sport-list
-            v-if="sportList"
-            :list="sportList"
-          ></sport-list>
-          <div
-            class="nodata"
-            v-else
-          >
+          <sport-list :list="sportList" v-if="sportList"></sport-list>
+          <div class="nodata" v-else>
             <i class="iconfont icon-msg- font128"></i>
             <p>今日暂无数据</p>
           </div>
@@ -160,6 +154,16 @@ export default {
       menu2: false
     }
   },
+  asyncData({ $axios, context, params }) {
+    return $axios
+      .get('/api/GetTabs/GetReMen?fNum=3&sNum=4&tNum=5')
+      .then((res) => {
+        console.log(res.data.Data)
+        // return {
+        //   list: res.Data.List
+        // }
+      })
+  },
   // 全局store 入口
   fetch({ app, $axios }) {
     const nowDate = moment().format('YYYY-MM-DD')
@@ -189,18 +193,6 @@ export default {
           // console.log(portDate)
           if (list.length > 0) {
             if (typeof obj === 'object' && obj instanceof Object) {
-              if (!obj.hasOwnProperty('Date')) {
-                console.log(
-                  '数据合适有问题，请检查返回的对象中是否含有Date 字段'
-                )
-                return
-              }
-              if (!obj.hasOwnProperty('List')) {
-                console.log(
-                  '数据合适有问题，请检查返回的对象中是否含有List 字段'
-                )
-                return
-              }
               newObj[key] = value
             } else {
               console.log('请输入一个对象')
@@ -214,16 +206,7 @@ export default {
         }
       })
   },
-  asyncData({ $axios, context, params }) {
-    return $axios
-      .get('/api/GetTabs/GetReMen?fNum=3&sNum=4&tNum=5')
-      .then((res) => {
-        console.log(res.data.Data)
-        // return {
-        //   list: res.Data.List
-        // }
-      })
-  },
+
   computed: {
     ...mapGetters({
       sportList: 'sport/getSportList', // 获取sportList 列表
@@ -274,14 +257,6 @@ export default {
       const obj = data
       // 判断是否为对象
       if (typeof obj === 'object' && obj instanceof Object) {
-        if (!obj.hasOwnProperty('Date')) {
-          console.log('数据合适有问题，请检查返回的对象中是否含有Date 字段')
-          return
-        }
-        if (!obj.hasOwnProperty('List')) {
-          console.log('数据合适有问题，请检查返回的对象中是否含有List 字段')
-          return
-        }
         const key = moment(obj.Date).format('YYYY-MM-DD')
         const value = obj.List
         const newObj = {}

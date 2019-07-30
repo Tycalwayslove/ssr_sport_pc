@@ -1,24 +1,17 @@
 <template>
   <div class="sport-list">
     <div class="sport-list-el">
-      <ul
-        v-for="(key, value, index) in list"
-        :key="index"
-        class="game-list"
-      >
+      <ul :key="index" class="game-list" v-for="(key, value, index) in list">
         <li class="group-info">
           <span />
           {{ PlayDate | formatDateWeek }}
         </li>
         <li
           v-for="sportItem in key"
-          :Key="sportItem.playId"
+          :key="sportItem.playId"
           class="game-item px-bottom"
         >
-          <a
-            class="detail-url"
-            :href="sportItem.liveAddress1"
-          >
+          <a :href="sportItem.liveAddress1" class="detail-url">
             <div class="game-time">
               {{ sportItem.playTimeStart | formatDate }}
             </div>
@@ -27,7 +20,6 @@
                 <span>{{ sportItem.teamAName }}</span>
                 <img
                   src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
-                  alt
                 />
               </div>
               <div class="a-goal">{{ sportItem.teamAPoint }}</div>
@@ -42,8 +34,7 @@
               <div class="b-name">
                 <img
                   src="https://inews.gtimg.com/newsapp_ls/0/374617056/0.jpg"
-                  alt
-                >
+                />
                 <span>{{ sportItem.teamBName }}</span>
               </div>
             </div>

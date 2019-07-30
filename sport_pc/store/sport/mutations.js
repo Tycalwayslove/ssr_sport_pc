@@ -51,7 +51,7 @@ export default {
   // 改变params 的值
   changeParams(state, actions) {
     // console.log(actions)
-    if (state.hasOwnProperty(actions.name)) {
+    if (state[actions.name]) {
       state[actions.name] = actions.value
     }
   }

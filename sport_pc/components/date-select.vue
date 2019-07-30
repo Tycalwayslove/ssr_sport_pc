@@ -1,16 +1,15 @@
 <template>
   <div class="date-list">
-    <div
-      class="left-btn"
-      @click="handleBeforeDate">
+    <div @click="handleBeforeDate" class="left-btn">
       <i class="iconfont icon-before" />
     </div>
     <ul class="date-box">
       <li
-        v-for="(item, index) in week"
-        :key="index"
         :class="[select === index ? 'active' : '', 'date-item']"
-        @click="handelSelctItem(index, item)">
+        :key="index"
+        @click="handelSelctItem(index, item)"
+        v-for="(item, index) in week"
+      >
         <p>
           <span>{{ item | dateFormat }}</span>
           <br />
@@ -18,9 +17,7 @@
         </p>
       </li>
     </ul>
-    <div
-      class="right-btn"
-      @click="handleAfterDate">
+    <div @click="handleAfterDate" class="right-btn">
       <i class="iconfont icon-after" />
     </div>
   </div>
@@ -35,32 +32,34 @@ export default {
     daysweek(date) {
       const now = moment(date).format('d')
       // console.log(typeof now)
+      let a
       switch (now) {
         case '0':
-          return '星期日'
+          a = '星期日'
           break
         case '1':
-          return '星期一'
+          a = '星期一'
           break
         case '2':
-          return '星期二'
+          a = '星期二'
           break
         case '3':
-          return '星期三'
+          a = '星期三'
           break
         case '4':
-          return '星期四'
+          a = '星期四'
           break
         case '5':
-          return '星期五'
+          a = '星期五'
           break
         case '6':
-          return '星期六'
+          a = '星期六'
           break
         default:
-          return '日期不明'
+          a = '日期不明'
           break
       }
+      return a
     },
     dateFormat(date) {
       const idx = date.indexOf('-')
