@@ -157,9 +157,9 @@ export default {
       cursor: pointer;
     }
     .active {
-      color: $base-color;
-      border-radius: 2px;
-      background-color: red;
+      color: #3a84ff;
+      border-radius: 6px;
+      background-color: #eef3f8;
     }
   }
   .left-btn,

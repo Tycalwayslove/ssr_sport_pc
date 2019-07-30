@@ -83,7 +83,7 @@
         ></date-select>
       </div>
       <!-- 下面展示的列表 -->
-      <div class="list-box">
+      <div class="list-box fadeInLeft">
         <div class="days-list">
           <sport-list :list="sportList" v-if="sportList"></sport-list>
           <div class="nodata" v-else>
