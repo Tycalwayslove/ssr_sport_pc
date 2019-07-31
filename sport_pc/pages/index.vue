@@ -83,14 +83,16 @@
         ></date-select>
       </div>
       <!-- 下面展示的列表 -->
-      <div class="list-box fadeInLeft">
-        <div class="days-list">
-          <sport-list :list="sportList" v-if="sportList"></sport-list>
-          <div class="nodata" v-else>
-            <i class="iconfont icon-msg- font128"></i>
-            <p>今日暂无数据</p>
+      <div class="list-box">
+        <v-fade-transition>
+          <div class="days-list">
+            <sport-list :list="sportList" v-if="sportList"></sport-list>
+            <div class="nodata" v-else>
+              <i class="iconfont icon-msg- font128"></i>
+              <p>今日暂无数据</p>
+            </div>
           </div>
-        </div>
+        </v-fade-transition>
       </div>
     </div>
   </div>
@@ -344,5 +346,16 @@ export default {
   .font128 {
     font-size: 128px;
   }
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>
