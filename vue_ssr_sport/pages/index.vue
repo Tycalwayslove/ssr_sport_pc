@@ -1,68 +1,50 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        vue_ssr_sport
-      </h1>
-      <h2 class="subtitle">
-        one pc project with nuxt
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <div class="nav">
+      <div class="nav-center">
+        <div class="nav-logo">
+          <a href="#">
+            <img src alt />
+          </a>
+        </div>
+        <div class="nav-list">
+          <a href="#">NBA</a>
+          <a href="#">中超</a>
+          <a href="#">英超</a>
+          <a href="#">西甲</a>
+          <a href="#">CBA</a>
+        </div>
       </div>
     </div>
+    <div class="nav_top"></div>
+    <div class="content"></div>
+    <div class="footer"></div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  }
+  components: {}
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  background: #f1f1f1;
+  .nav {
+    height: 48px;
+    background-image: linear-gradient(-180deg, #f04745 0%, #dc2221 100%);
+    .nav-center {
+      width: 1200px;
+      height: 48px;
+      margin: 0 auto;
+      .nav-logo {
+        float: left;
+        width: 78px;
+        height: 34px;
+        margin: 0 auto;
+      }
+    }
+  }
 }
 </style>
