@@ -4,19 +4,30 @@
       <div class="nav-center">
         <div class="nav-logo">
           <a href="#">
-            <img src alt />
+            <img src="@/assets/img/logo.png" />
           </a>
         </div>
         <div class="nav-list">
-          <a href="#">NBA</a>
-          <a href="#">中超</a>
-          <a href="#">英超</a>
-          <a href="#">西甲</a>
-          <a href="#">CBA</a>
+          <a
+            v-for="(item, index) in navList"
+            :Key="index"
+            :href="item.path"
+            class="active"
+          >
+            {{ item.name }}
+          </a>
         </div>
       </div>
     </div>
-    <div class="nav_top"></div>
+    <div class="nav_top">
+      <a
+        v-for="(item, index) in navList"
+        :Key="index"
+        :href="item.path"
+        class="active"
+      >
+      </a>
+    </div>
     <div class="content"></div>
     <div class="footer"></div>
   </div>
@@ -24,7 +35,33 @@
 
 <script>
 export default {
-  components: {}
+  components: {},
+  data() {
+    return {
+      navList: [
+        {
+          name: 'NBA',
+          path: '/nba'
+        },
+        {
+          name: 'NBA',
+          path: '/nba'
+        },
+        {
+          name: 'NBA',
+          path: '/nba'
+        },
+        {
+          name: 'NBA',
+          path: '/nba'
+        },
+        {
+          name: 'NBA',
+          path: '/nba'
+        }
+      ]
+    }
+  }
 }
 </script>
 
@@ -41,8 +78,46 @@ export default {
       .nav-logo {
         float: left;
         width: 78px;
-        height: 34px;
+        height: 100%;
         margin: 0 auto;
+        & a {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+        }
+        & img {
+          width: 100%;
+          margin: 4px auto;
+        }
+      }
+      .nav-list {
+        position: relative;
+        float: left;
+        margin-left: 43px;
+        color: #fff;
+        font-size: 18px;
+        font-stretch: 100%;
+        & a {
+          position: relative;
+          float: left;
+          color: #fff;
+          height: 100%;
+          font: 16px/48px 'microsoft yahei';
+          margin-left: 43px;
+        }
+        .active:after {
+          position: absolute;
+          bottom: 0;
+          left: 10px;
+          border: 4px solid transparent;
+          border-bottom: #fff;
+        }
+      }
+      .nav_top {
+        width: 100%;
+        height: 48px;
+        background: black;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
       }
     }
   }
