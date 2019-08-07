@@ -58,12 +58,14 @@
             <a href="#">CCTV5</a>
           </div>
         </div>
-      </div>
-      <!-- 足球集锦 -->
-      <div class="match-block">
-        <div class="block-title">
-          <h1>足球比赛集锦录像</h1>
-          <a href="#">查看更多</a>
+        <!-- 足球集锦 -->
+        <div class="match-block">
+          <div class="block-title">
+            <h1>足球比赛集锦录像</h1>
+            <a class="more" href="#">查看更多>></a>
+          </div>
+          <!-- 集锦录像推荐 -->
+          <Recommend></Recommend>
         </div>
       </div>
     </div>
@@ -72,8 +74,9 @@
 </template>
 
 <script>
+import Recommend from '@/components/site-components/recommend'
 export default {
-  components: {},
+  components: { Recommend },
   data() {
     return {
       navList: [
@@ -252,24 +255,31 @@ export default {
       width: 340px;
       height: auto;
       float: right;
+      .block-title {
+        height: 40px;
+        background: #017bd1;
+        & h1 {
+          float: left;
+          padding: 0 15px;
+          height: 40px;
+          font: 20px/40px 'microsoft yahei';
+          color: #fff;
+          text-align: center;
+          background: #dc2221;
+        }
+        .more {
+          float: right;
+          font: 14px/40px 'microsoft yahei';
+          color: #fff;
+          margin-right: 10px;
+        }
+      }
       .block {
         height: auto;
         margin-bottom: 10px;
         padding-bottom: 20px;
         background: #fff;
-        .block-title {
-          height: 40px;
-          background: #017bd1;
-          & h1 {
-            float: left;
-            padding: 0 15px;
-            height: 40px;
-            font: 20px/40px 'microsoft yahei';
-            color: #fff;
-            text-align: center;
-            background: #dc2221;
-          }
-        }
+
         .block-content {
           & a {
             font: 14px/14px 'microsoft yahei';
@@ -278,6 +288,9 @@ export default {
             margin: 22px 0 0 22px;
           }
         }
+      }
+      .match-block {
+        background: #fff;
       }
     }
   }
