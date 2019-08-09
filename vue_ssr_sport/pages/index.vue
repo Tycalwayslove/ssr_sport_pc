@@ -62,7 +62,7 @@
         <div class="match-block">
           <div class="block-title">
             <h1>足球比赛集锦录像</h1>
-            <a class="more" href="#">查看更多>></a>
+            <a class="more">查看更多>></a>
           </div>
           <!-- 集锦录像推荐 -->
           <Recommend></Recommend>
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Recommend from '@/components/site-components/recommend'
 export default {
   components: { Recommend },
@@ -118,7 +119,13 @@ export default {
       topnum: 1
     }
   },
+  created() {
+    this.getTabs()
+  },
   methods: {
+    ...mapActions({
+      getTabs: 'sport/getTabs'
+    }),
     handleClickTabTop(index) {
       this.topnum = index
     }

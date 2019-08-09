@@ -2,7 +2,7 @@ module.exports = {
   mode: 'universal',
   server: {
     host: 'localhost',
-    port: 3002
+    port: 8080
   },
   /*
    ** Headers of the page
