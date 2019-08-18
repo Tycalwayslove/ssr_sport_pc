@@ -1,4 +1,4 @@
 export default {
-  baseUrl: 'http://3.1.85.182',
+  baseUrl: '120.78.74.49',
   port: 8080
 }

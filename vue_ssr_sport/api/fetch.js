@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Axios = axios.create({
-  baseURL: 'http://3.1.85.182:8080',
+  baseURL: 'http://120.78.74.49:8080/api',
   timeout: 30000,
   header: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
