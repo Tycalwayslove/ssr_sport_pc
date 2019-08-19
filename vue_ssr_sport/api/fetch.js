@@ -1,3 +1,11 @@
+/*
+ * @Descripttion:
+ * @Author: tangyouchao
+ * @Date: 2019-08-09 20:49:42
+ * @LastEditors: tangyouchao
+ * @LastEditTime: 2019-08-20 06:03:01
+ */
+import qs from 'querystring'
 import axios from 'axios'
 
 const Axios = axios.create({
@@ -17,6 +25,9 @@ const Axios = axios.create({
 // POST传参序列化
 Axios.interceptors.request.use(
   (config) => {
+    if (config.method === 'post') {
+      config.data = qs.stringify(config.data)
+    }
     console.log(config)
     return config
   },

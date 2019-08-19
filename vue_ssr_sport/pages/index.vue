@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion: 
+ * @Author: tangyouchao
+ * @Date: 2019-08-06 05:08:25
+ * @LastEditors: tangyouchao
+ * @LastEditTime: 2019-08-20 05:47:45
+ -->
 <template>
   <div class="container">
     <div class="nav">
@@ -74,7 +81,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Recommend from '@/components/site-components/recommend'
 export default {
   components: { Recommend },
@@ -119,12 +126,20 @@ export default {
       topnum: 1
     }
   },
+  computed: {
+    ...mapGetters({
+      getSportTypeParames: 'sport/getSportTypeParames', // 类别参数
+      getPages: 'sport/getPages' // 分页参数
+    })
+  },
   created() {
-    this.getTabs()
+    const parames = Object.assign(this.getSportTypeParames, this.getPages)
+    this.getSportList(parames)
+    console.log(parames)
   },
   methods: {
     ...mapActions({
-      getTabs: 'sport/getTabs'
+      getSportList: 'sport/getSportList'
     }),
     handleClickTabTop(index) {
       this.topnum = index

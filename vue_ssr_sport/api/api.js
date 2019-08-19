@@ -1,5 +1,5 @@
 import fetch from './fetch'
-export const getTab = (data) =>
+export const getSportList = (data) =>
   fetch({
     url: '/GetPlayData/GetPalyForType',
     methods: 'GET',
