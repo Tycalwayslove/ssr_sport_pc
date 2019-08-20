@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 20:49:42
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-20 06:03:01
+ * @LastEditTime: 2019-08-20 21:00:23
  */
 import qs from 'querystring'
 import axios from 'axios'
@@ -11,23 +11,19 @@ import axios from 'axios'
 const Axios = axios.create({
   baseURL: 'http://120.78.74.49:8080/api',
   timeout: 30000,
-  header: {
+  headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
   },
-  data: {
-    token: '',
-    os: '',
-    timestamp: '',
-    nonce: ''
-  }
+  data: {}
 })
 
 // POST传参序列化
 Axios.interceptors.request.use(
   (config) => {
-    if (config.method === 'post') {
-      config.data = qs.stringify(config.data)
+    if (config.method === 'POST') {
+      console.log('post')
     }
+    config.data = qs.stringify(config.data)
     console.log(config)
     return config
   },

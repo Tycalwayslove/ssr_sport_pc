@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-20 05:51:32
+ * @LastEditTime: 2019-08-20 20:54:13
  */
 import { getSportList } from '@/api/api'
 export default {

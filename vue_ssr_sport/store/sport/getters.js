@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-20 05:43:45
+ * @LastEditTime: 2019-08-20 20:53:06
  */
 export default {
   /**
@@ -34,5 +34,8 @@ export default {
       pageSize: state.pageSize
     }
     return pages
+  },
+  getPlayDate: (state) => {
+    return { playDate: state.playDate }
   }
 }
