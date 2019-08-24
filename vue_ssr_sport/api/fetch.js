@@ -3,9 +3,9 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 20:49:42
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-20 21:00:23
+ * @LastEditTime: 2019-08-24 08:10:00
  */
-import qs from 'querystring'
+import qs from 'qs'
 import axios from 'axios'
 
 const Axios = axios.create({
@@ -14,7 +14,8 @@ const Axios = axios.create({
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
   },
-  data: {}
+  data: {},
+  params: {}
 })
 
 // POST传参序列化
@@ -22,9 +23,12 @@ Axios.interceptors.request.use(
   (config) => {
     if (config.method === 'POST') {
       console.log('post')
+      config.data = qs.stringify(config.data)
     }
-    config.data = qs.stringify(config.data)
-    console.log(config)
+    if (config.method === 'GET') {
+      console.log('get')
+      config.params = qs.stringify(config.params)
+    }
     return config
   },
   (error) => {
@@ -35,7 +39,6 @@ Axios.interceptors.request.use(
 // 返回状态判断
 Axios.interceptors.response.use(
   (res) => {
-    console.log(res)
     return res
   },
   (error) => {
