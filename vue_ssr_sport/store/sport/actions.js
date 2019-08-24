@@ -3,9 +3,10 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-20 20:54:13
+ * @LastEditTime: 2019-08-24 10:39:19
  */
 import { getSportList } from '@/api/api'
+// import { formatSportData } from '@/utils/base'
 export default {
   /**
    * @name: 赛事列表接口
@@ -21,11 +22,16 @@ export default {
    * @return:
    */
   getSportList({ commit }, paramas) {
-    console.log('参数为')
-    console.log(paramas)
     getSportList(paramas).then(
       (res) => {
         console.log(res)
+        // 比赛数据的处理，把其转换为 日期：比赛的格式
+        // formatSportData(res.Data.List)
+
+        commit({
+          type: 'pushSportList',
+          sportList: res.Data.List
+        })
       },
       (error) => {
         console.log(error)

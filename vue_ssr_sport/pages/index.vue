@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-20 20:52:04
+ * @LastEditTime: 2019-08-24 09:02:57
  -->
 <template>
   <div class="container">
@@ -50,7 +50,7 @@
       <div class="content-left">
         <div class="content-match">
           <div class="sport-list">
-            这里是数据列表组件
+            <sport-list></sport-list>
           </div>
         </div>
       </div>
@@ -83,8 +83,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Recommend from '@/components/site-components/recommend'
+import SportList from '@/components/site-components/sport-list'
 export default {
-  components: { Recommend },
+  components: { Recommend, SportList },
   data() {
     return {
       navList: [
@@ -139,6 +140,7 @@ export default {
       this.getPages,
       this.getPlayDate
     )
+    console.log(parames)
     this.getSportList(parames)
   },
   methods: {

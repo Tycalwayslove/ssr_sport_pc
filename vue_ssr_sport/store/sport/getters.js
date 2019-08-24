@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-20 20:53:06
+ * @LastEditTime: 2019-08-24 09:19:16
  */
 export default {
   /**
@@ -35,7 +35,22 @@ export default {
     }
     return pages
   },
+  /**
+   * @name: 获取日期
+   * @msg: 。
+   * @param {Object}
+   * @return: 。
+   */
   getPlayDate: (state) => {
     return { playDate: state.playDate }
+  },
+  /**
+   * @name: 获取比赛列表
+   * @msg: 。
+   * @param {Object}
+   * @return: 。
+   */
+  getterSportList: (state) => {
+    return state.sportList
   }
 }
