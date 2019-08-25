@@ -1,9 +1,18 @@
+<!--
+ * @Descripttion: 
+ * @Author: tangyouchao
+ * @Date: 2019-08-07 05:40:02
+ * @LastEditors: tangyouchao
+ * @LastEditTime: 2019-08-25 10:09:38
+ -->
 <template>
   <div class="recommend">
     <div
       v-for="(item, index) in 2"
       :key="index"
       class="recommend-item pxborder"
+      @mouseover="hoverIndex = index"
+      @mouseout="hoverIndex = -1"
     >
       <div class="name left">
         <p class="sport-name">
@@ -26,12 +35,27 @@
           <span class="score-b">2</span>
         </p>
       </div>
-      <a href="#" target="_blank" class="opacity">
+      <a
+        href="#"
+        target="_blank"
+        class="opacity"
+        :class="{ shade: index == hoverIndex }"
+      >
         <span>赛事详情</span>
       </a>
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: 'Recommend',
+  data() {
+    return {
+      hoverIndex: -1
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 .recommend {
   position: relative;
@@ -92,14 +116,27 @@
   .opacity {
     width: 100%;
     height: 125px;
+    line-height: 125px;
     position: absolute;
     top: 0;
     left: 0;
     background: rgba(195, 25, 19, 0.5);
-    filter: Alpha(opacity=50);
     transform: scale(0.9);
     opacity: 0;
+    text-align: center;
+    & span {
+      color: #fff;
+      font-size: 16px;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+  }
+  .shade {
+    opacity: 1;
+    transform: scale(1);
     transition: all 0.25s ease-in-out;
+    filter: Alpha(opacity=50);
   }
 }
 </style>

@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-24 09:02:57
+ * @LastEditTime: 2019-08-25 09:37:30
  -->
 <template>
   <div class="container">
@@ -42,14 +42,11 @@
       </div>
     </div>
     <div class="content">
-      <div class="content-match-fixed">
-        <a href="#">今天</a>
-        <a href="#">明天</a>
-        <a href="#">后天</a>
-      </div>
+      <nav-bar></nav-bar>
       <div class="content-left">
         <div class="content-match">
           <div class="sport-list">
+            <tab></tab>
             <sport-list></sport-list>
           </div>
         </div>
@@ -82,10 +79,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import Recommend from '@/components/site-components/recommend'
 import SportList from '@/components/site-components/sport-list'
+import Tab from '@/components/base-components/tab'
+import NavBar from '@/components/base-components/nav-bar'
+import Recommend from '@/components/site-components/recommend'
 export default {
-  components: { Recommend, SportList },
+  components: { Recommend, SportList, Tab, NavBar },
   data() {
     return {
       navList: [
@@ -250,22 +249,7 @@ export default {
     height: auto;
     margin: 10px auto 0;
     position: relative;
-    .content-match-fixed {
-      background: #fff;
-      width: 80px;
-      position: absolute;
-      top: 0px;
-      left: 0;
-      padding-bottom: 24px;
-      & a {
-        display: block;
-        font: 16px/28px 'microsoft yahei';
-        color: #333;
-        width: 80%;
-        text-align: center;
-        margin: 18px auto 0;
-      }
-    }
+
     .content-left {
       width: 760px;
       height: auto;
