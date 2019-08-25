@@ -3,16 +3,46 @@
  * @Author: tangyouchao
  * @Date: 2019-08-25 09:33:00
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-25 09:42:56
+ * @LastEditTime: 2019-08-25 12:57:12
  -->
 <template>
   <div class="content-match-fixed">
-    <a href="#" class="active">今天</a>
-    <a href="#">明天</a>
-    <a href="#">后天</a>
-    <a href="#">xi</a>
+    <a
+      v-for="(item, index) in playDateList"
+      :key="index"
+      href="#"
+      :class="{ active: index == isActive }"
+      @click="handleSelectDate(index)"
+    >
+      <p v-if="index < 3">{{ DateTitle[index] }}</p>
+      <p v-else>{{ item.date }} {{ item.weekday }}</p>
+    </a>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  name: 'NavBar',
+  data() {
+    return {
+      isActive: -1,
+      DateTitle: ['今天', '明天', '后天']
+    }
+  },
+  computed: {
+    ...mapGetters({
+      playDateList: 'sport/getPlayDatesList'
+    })
+  },
+  methods: {
+    handleSelectDate(index) {
+      console.log(this.playDateList)
+      this.isActive = index
+    }
+  }
+}
+</script>
 
 <style lang="scss" scope>
 .content-match-fixed {

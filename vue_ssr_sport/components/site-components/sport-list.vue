@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-24 08:55:09
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-24 10:40:08
+ * @LastEditTime: 2019-08-25 10:55:26
  -->
 <template>
   <div>
@@ -29,10 +29,7 @@ export default {
       sportList: 'sport/getterSportList'
     })
   },
-  mounted() {
-    console.log(222)
-    console.log(this.sportList)
-  },
+  mounted() {},
   methods: {}
 }
 </script>

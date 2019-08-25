@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-24 10:39:19
+ * @LastEditTime: 2019-08-25 16:14:17
  */
 import { getSportList } from '@/api/api'
 // import { formatSportData } from '@/utils/base'
@@ -21,8 +21,8 @@ export default {
    * @param isEnd: 0:全部赛事，1:进行中赛事或即将进行的近期赛事，2:已结束赛事
    * @return:
    */
-  getSportList({ commit }, paramas) {
-    getSportList(paramas).then(
+  getSportList({ commit }, params) {
+    getSportList(params).then(
       (res) => {
         console.log(res)
         // 比赛数据的处理，把其转换为 日期：比赛的格式
@@ -37,5 +37,8 @@ export default {
         console.log(error)
       }
     )
+  },
+  getTabBar({ commit }, params) {
+    console.log('获取tab列表')
   }
 }

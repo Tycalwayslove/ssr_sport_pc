@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-25 09:37:30
+ * @LastEditTime: 2019-08-25 11:02:48
  -->
 <template>
   <div class="container">
@@ -78,7 +78,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+// import moment from 'moment'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import SportList from '@/components/site-components/sport-list'
 import Tab from '@/components/base-components/tab'
 import NavBar from '@/components/base-components/nav-bar'
@@ -145,6 +146,9 @@ export default {
   methods: {
     ...mapActions({
       getSportList: 'sport/getSportList'
+    }),
+    ...mapMutations({
+      setPlayDate: 'sport/setPlayDate'
     }),
     handleClickTabTop(index) {
       this.topnum = index
