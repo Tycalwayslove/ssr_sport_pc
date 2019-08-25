@@ -9,8 +9,6 @@
 export default {
   // 填充 sportList
   pushSportList(state, { sportList }) {
-    console.log(11)
-    console.log(sportList)
     state.sportList = sportList
   },
   setPlayDate(state, dates) {
