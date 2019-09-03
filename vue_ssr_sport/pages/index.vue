@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-02 22:53:02
+ * @LastEditTime: 2019-09-04 06:46:34
  -->
 <template>
   <div class="container">
@@ -78,12 +78,14 @@
 </template>
 
 <script>
-// import moment from 'moment'
+import axios from 'axios'
+import moment from 'moment'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import SportList from '@/components/site-components/sport-list'
 import Tab from '@/components/base-components/tab'
 import NavBar from '@/components/base-components/nav-bar'
 import Recommend from '@/components/site-components/recommend'
+
 export default {
   components: { Recommend, SportList, Tab, NavBar },
   data() {
@@ -133,10 +135,25 @@ export default {
       getPlayDate: 'sport/getPlayDate' // 日期
     })
   },
+  fetch({ store, params }) {
+    const data = {
+      firstClassId: 0,
+      secondClassId: 0,
+      thirdClassId: 0,
+      playDate: moment().format('YYYY-MM-DD'),
+      currentState: '未完成',
+      days: 7,
+      daysAheadOrRear: 1
+    }
+    console.log(data)
+    return axios.get(`/api/GetPlayData/GetPalyForTimeSlot`).then((res) => {
+      console.log(res)
+    })
+  },
   created() {
     const parames = Object.assign(this.getSportTypeParames, this.getPlayDate)
     console.log(parames)
-    this.getSportList(parames)
+    // this.getSportList(parames)
   },
   methods: {
     ...mapActions({

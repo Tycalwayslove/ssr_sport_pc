@@ -1,3 +1,10 @@
+/*
+ * @Descripttion:
+ * @Author: tangyouchao
+ * @Date: 2019-08-06 05:08:25
+ * @LastEditors: tangyouchao
+ * @LastEditTime: 2019-09-03 21:12:55
+ */
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')

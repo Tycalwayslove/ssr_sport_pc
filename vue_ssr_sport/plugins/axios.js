@@ -1,51 +1,33 @@
 /*
  * @Descripttion:
  * @Author: tangyouchao
- * @Date: 2019-08-09 21:02:48
+ * @Date: 2019-06-09 22:20:43
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-02 22:03:23
+ * @LastEditTime: 2019-09-03 21:15:44
  */
-import axios from 'axios'
+// import * as axios from 'axios'
+export default function({ app }) {
+  const axios = app.$axios
+  // 基本配置
+  axios.defaults.timeout = 10000
+  axios.defaults.headers.post['Content-Type'] =
+    'application/x-www-form-urlencoded'
 
-const Axios = axios.create({
-  baseURL: 'http://120.78.74.49:8080/api',
-  timeout: 30000,
-  header: {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-  },
-  data: {}
-})
-
-// POST传参序列化
-Axios.interceptors.request.use(
-  (config) => {
+  // 请求回调
+  axios.onRequest((config) => {
     console.log(config)
-    return config
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
-)
+  })
 
-// 返回状态判断
-Axios.interceptors.response.use(
-  (res) => {
-    console.log(res)
-    return res
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
-)
+  // 返回回调
+  axios.onResponse((res) => {
+    // console.log(res)
+    if (res.status === 200) {
+      return res.data
+    }
+  })
 
-export default function fetch(options) {
-  return new Promise((resolve, reject) => {
-    Axios(options)
-      .then((response) => {
-        resolve(response.data)
-      })
-      .catch((error) => {
-        reject(error)
-      })
+  // 错误回调
+  axios.onError((error) => {
+    console.log(error)
   })
 }
