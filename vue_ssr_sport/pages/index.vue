@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-25 11:02:48
+ * @LastEditTime: 2019-09-02 22:53:02
  -->
 <template>
   <div class="container">
@@ -130,16 +130,11 @@ export default {
   computed: {
     ...mapGetters({
       getSportTypeParames: 'sport/getSportTypeParames', // 类别参数
-      getPages: 'sport/getPages', // 分页参数
       getPlayDate: 'sport/getPlayDate' // 日期
     })
   },
   created() {
-    const parames = Object.assign(
-      this.getSportTypeParames,
-      this.getPages,
-      this.getPlayDate
-    )
+    const parames = Object.assign(this.getSportTypeParames, this.getPlayDate)
     console.log(parames)
     this.getSportList(parames)
   },

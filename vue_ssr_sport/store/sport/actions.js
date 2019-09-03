@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-25 16:14:17
+ * @LastEditTime: 2019-09-02 21:30:35
  */
 import { getSportList } from '@/api/api'
 // import { formatSportData } from '@/utils/base'
@@ -22,8 +22,9 @@ export default {
    * @return:
    */
   getSportList({ commit }, params) {
-    getSportList(params).then(
-      (res) => {
+    console.log(params)
+    getSportList(JSON.stringify(params))
+      .then((res) => {
         console.log(res)
         // 比赛数据的处理，把其转换为 日期：比赛的格式
         // formatSportData(res.Data.List)
@@ -32,11 +33,10 @@ export default {
           type: 'pushSportList',
           sportList: res.Data.List
         })
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   },
   getTabBar({ commit }, params) {
     console.log('获取tab列表')

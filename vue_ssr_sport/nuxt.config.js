@@ -1,3 +1,10 @@
+/*
+ * @Descripttion:
+ * @Author: tangyouchao
+ * @Date: 2019-08-06 05:08:25
+ * @LastEditors: tangyouchao
+ * @LastEditTime: 2019-09-02 22:00:17
+ */
 module.exports = {
   mode: 'universal',
   server: {

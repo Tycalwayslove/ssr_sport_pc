@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-25 20:58:46
+ * @LastEditTime: 2019-09-02 21:03:43
  */
 import moment from 'moment'
 export default {
@@ -19,7 +19,10 @@ export default {
     const parames = {
       firstClassId: state.firstClassId,
       secondClassId: state.secondClassId,
-      thirdClassId: state.thirdClassId
+      thirdClassId: state.thirdClassId,
+      currentState: state.currentState,
+      days: state.days,
+      daysAheadOrRear: state.daysAheadOrRear
     }
     return parames
   },

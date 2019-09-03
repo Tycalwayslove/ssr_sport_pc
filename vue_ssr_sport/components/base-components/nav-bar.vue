@@ -3,14 +3,13 @@
  * @Author: tangyouchao
  * @Date: 2019-08-25 09:33:00
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-25 12:57:12
+ * @LastEditTime: 2019-09-02 20:17:14
  -->
 <template>
   <div class="content-match-fixed">
     <a
       v-for="(item, index) in playDateList"
       :key="index"
-      href="#"
       :class="{ active: index == isActive }"
       @click="handleSelectDate(index)"
     >
