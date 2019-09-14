@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-02 22:00:17
+ * @LastEditTime: 2019-09-14 14:32:02
  */
 module.exports = {
   mode: 'universal',
@@ -38,7 +38,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['@/plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -51,13 +51,17 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  //   axios: {
+  //     baseURL: process.env.NODE_ENV === 'production' ?
+  //       'http://120.78.74.49:8080' : 'http://localhost:8080'
+  //   },
   proxy: {
     '/api': {
       target: 'http://120.78.74.49:8080/api',
