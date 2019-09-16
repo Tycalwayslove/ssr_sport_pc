@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-04 06:46:34
+ * @LastEditTime: 2019-09-17 05:39:30
  -->
 <template>
   <div class="container">
@@ -20,23 +20,15 @@
             :Key="index"
             :href="item.path"
             class="active"
-          >
-            {{ item.name }}
-          </a>
+          >{{ item.name }}</a>
         </div>
       </div>
     </div>
     <div class="nav-top-box">
       <div class="nav-top">
         <ul>
-          <li
-            v-for="(item, index) in navTopList"
-            :Key="index"
-            @click="handleClickTabTop(index)"
-          >
-            <a :class="topnum === index ? 'hover' : ''">
-              {{ item.name }}
-            </a>
+          <li v-for="(item, index) in navTopList" :Key="index" @click="handleClickTabTop(index)">
+            <a :class="topnum === index ? 'hover' : ''">{{ item.name }}</a>
           </li>
         </ul>
       </div>
@@ -47,7 +39,7 @@
         <div class="content-match">
           <div class="sport-list">
             <tab></tab>
-            <sport-list></sport-list>
+            <sport-list listData="sportList"></sport-list>
           </div>
         </div>
       </div>
@@ -126,41 +118,49 @@ export default {
           path: '/jijin'
         }
       ],
-      topnum: 1
+      topnum: 1,
+      sportList: [] // 比赛列表
     }
   },
   computed: {
-    ...mapGetters({
-      getSportTypeParames: 'sport/getSportTypeParames', // 类别参数
-      getPlayDate: 'sport/getPlayDate' // 日期
-    })
+    // ...mapGetters({
+    //   getSportTypeParames: 'sport/getSportTypeParames', // 类别参数
+    //   getPlayDate: 'sport/getPlayDate' // 日期
+    // })
   },
-  fetch({ store, params }) {
-    const data = {
+  fetch({ app, $axios }) {
+    const params = {
       firstClassId: 0,
       secondClassId: 0,
       thirdClassId: 0,
       playDate: moment().format('YYYY-MM-DD'),
-      currentState: '未完成',
+      currentState: '2',
       days: 7,
       daysAheadOrRear: 1
     }
-    console.log(data)
-    return axios.get(`/api/GetPlayData/GetPalyForTimeSlot`).then((res) => {
-      console.log(res)
-    })
+    return $axios
+      .get('/api/GetPlayData/GetPalyForTimeSlot', { params })
+      .then((res) => {
+        console.log(res)
+        const { Data, State } = res
+        console.log(Data.List)
+        const params = Data.List
+        // 比赛列表赋值
+        app.store.commit('sport/pushSportList', { params })
+      })
   },
   created() {
-    const parames = Object.assign(this.getSportTypeParames, this.getPlayDate)
-    console.log(parames)
+    // const parames = Object.assign(this.getSportTypeParames, this.getPlayDate)
+    // console.log(parames)
     // this.getSportList(parames)
   },
   methods: {
-    ...mapActions({
-      getSportList: 'sport/getSportList'
-    }),
+    // ...mapActions({
+    //   getSportList: 'sport/getSportList'
+    // }),
     ...mapMutations({
-      setPlayDate: 'sport/setPlayDate'
+      setPlayDate: 'sport/setPlayDate',
+      pushSportList: 'sport/pushSportList'
     }),
     handleClickTabTop(index) {
       this.topnum = index

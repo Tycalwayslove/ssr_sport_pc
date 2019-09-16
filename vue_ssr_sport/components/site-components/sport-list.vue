@@ -3,12 +3,12 @@
  * @Author: tangyouchao
  * @Date: 2019-08-24 08:55:09
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-08-25 10:55:26
+ * @LastEditTime: 2019-09-17 05:47:31
  -->
 <template>
   <div>
-    <div v-if="sportList.length > 0">
-      <sport-list-item></sport-list-item>
+    <div v-if="Object.keys(sportList).length >0">
+      <sport-list-item :sportList="sportList"></sport-list-item>
     </div>
     <no-data v-else></no-data>
   </div>
