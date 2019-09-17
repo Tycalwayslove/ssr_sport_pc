@@ -3,14 +3,14 @@
  * @Author: tangyouchao
  * @Date: 2019-08-25 09:33:00
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-02 20:17:14
+ * @LastEditTime: 2019-09-18 06:05:50
  -->
 <template>
   <div class="content-match-fixed">
     <a
       v-for="(item, index) in playDateList"
       :key="index"
-      :class="{ active: index == isActive }"
+      :class="{ active: index == anchorIndex }"
       @click="handleSelectDate(index)"
     >
       <p v-if="index < 3">{{ DateTitle[index] }}</p>
@@ -20,24 +20,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters,mapMutations } from 'vuex'
 export default {
   name: 'NavBar',
   data() {
     return {
-      isActive: -1,
       DateTitle: ['今天', '明天', '后天']
     }
   },
   computed: {
     ...mapGetters({
-      playDateList: 'sport/getPlayDatesList'
+      playDateList: 'sport/getPlayDatesList',
+      anchorIndex: 'sport/getterAnchorIndex',
+
     })
   },
   methods: {
+    ...mapMutations({
+      setAnchorIndex:'sport/setAnchorIndex'
+    }),
     handleSelectDate(index) {
       console.log(this.playDateList)
-      this.isActive = index
+      this.setAnchorIndex(index)
     }
   }
 }
@@ -58,6 +62,7 @@ export default {
     width: 80%;
     text-align: center;
     margin: 18px auto 0;
+    cursor: pointer;
     &:hover {
       color: #fff;
       background: #dc2221;

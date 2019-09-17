@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-06 05:08:25
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-17 05:39:30
+ * @LastEditTime: 2019-09-18 06:16:48
  -->
 <template>
   <div class="container">
@@ -149,11 +149,10 @@ export default {
         app.store.commit('sport/pushSportList', { params })
       })
   },
-  created() {
-    // const parames = Object.assign(this.getSportTypeParames, this.getPlayDate)
-    // console.log(parames)
-    // this.getSportList(parames)
+  mounted() {
+    // window.addEventLister('scroll', this.handleScroll)
   },
+
   methods: {
     // ...mapActions({
     //   getSportList: 'sport/getSportList'
@@ -164,6 +163,13 @@ export default {
     }),
     handleClickTabTop(index) {
       this.topnum = index
+    },
+    handleScroll() {
+      // var scrollTop =
+      //   window.pageYOffset ||
+      //   document.documentElement.scrollTop ||
+      //   document.body.scrollTop
+      // console.log(scrollTop)
     }
   }
 }

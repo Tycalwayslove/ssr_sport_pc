@@ -3,7 +3,7 @@
  * @Author: tangyouchao
  * @Date: 2019-08-09 21:24:15
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-17 05:38:24
+ * @LastEditTime: 2019-09-18 05:32:01
  */
 import moment from 'moment'
 export default () => ({
@@ -15,6 +15,8 @@ export default () => ({
     nextPlayDate: [], // navbar 中得数据列表
     sportList: {}, // 比赛数据
     // tab 相关
+    activeTab: 0, // 激活的tab页 0：未完赛直播 1：近期完赛直播
+    anchorIndex: 0, // 锚点对应得日期
     firstClassId: 0, // 一级获取个数 0 则为全部
     secondClassId: 0, // 二级获取个数
     thirdClassId: 0, // 三级获取个数

@@ -3,14 +3,16 @@
  * @Author: tangyouchao
  * @Date: 2019-08-24 10:25:07
  * @LastEditors: tangyouchao
- * @LastEditTime: 2019-09-17 06:12:07
+ * @LastEditTime: 2019-09-18 06:03:19
  -->
 <template>
   <div>
-    <div v-for="(value,key) in sportList" :key="key">
+    <div v-for="(value,key,index) in sportList" :key="key">
       <div class="list-item">
-        <div class="item-date">{{key | formatDays}}</div>
-        <div  v-for="(item,i) in value" :key="i" class="sport-list-item pxborder">
+        <div class="item-date">
+          <a :id="'anchor-'+index">{{key | formatDays}}</a>
+        </div>
+        <div v-for="(item,i) in value" :key="i" class="sport-list-item pxborder">
           <div class="href">
             <div class="left">
               <div class="time">{{item.playTimeStart | formatDate}}</div>
@@ -46,6 +48,7 @@
 </template>
 <script>
 import moment from 'moment'
+import { mapGetters } from 'vuex'
 export default {
   name: 'SportItem',
   data() {
@@ -57,21 +60,35 @@ export default {
       default: {}
     }
   },
-  computed: {},
-  filters:{
-    formatDate:function(value){
-      if(!!value){
+  computed: {
+    ...mapGetters({
+      anchorIndex: 'sport/getterAnchorIndex'
+    })
+  },
+  watch:{
+    anchorIndex(value,oldVal){
+      console.log(value)
+      console.log(oldVal)
+      const id = `#anchor-${value}`
+      console.log(id)
+      const anchor = this.$el.querySelector(`${id}`)
+      console.log(anchor)
+      console.log(anchor.offsetTop)
+      // document.body.scrollTop = anchor.offsetTop
+    }
+  },
+  filters: {
+    formatDate: function(value) {
+      if (!!value) {
         return moment(value).format('HH:MM')
       }
       return ''
-
     },
-    formatDays:function(value){
-      if(!!value){
+    formatDays: function(value) {
+      if (!!value) {
         return moment(value).format('MM-DD')
       }
       return ''
-
     }
   }
 }
